@@ -1,14 +1,18 @@
-
+/**
+ * 
+ */
 package br.com.randrade.exceptions;
 
-
+/**
+ * @author rafael.andrade
+ *
+ */
 public class MaisDeUmRegistroException extends Exception {
 
+	private static final long serialVersionUID = -7509649433607067138L;
 
-    private static final long serialVersionUID = -7509649433607067138L;
-
-    public MaisDeUmRegistroException(String msg) {
-        super(msg);
-    }
+	public MaisDeUmRegistroException(String msg) {
+		super(msg);
+	}
 
 }

@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author rodrigo.pires
+ * @author rafael.andrade
  *
  */
 @Documented
@@ -16,5 +16,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Tabela {
 
-    String value();
+	String value();
 }

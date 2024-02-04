@@ -1,6 +1,3 @@
-/**
- * 
- */
 package br.com.randrade.dao.generic.jpa;
 
 import java.io.Serializable;
@@ -11,28 +8,28 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import br.com.randrade.dao.Persistente;
+import br.com.randrade.domain.jpa.Persistente;
 import br.com.randrade.exceptions.DAOException;
 import br.com.randrade.exceptions.MaisDeUmRegistroException;
 import br.com.randrade.exceptions.TableException;
 import br.com.randrade.exceptions.TipoChaveNaoEncontradaException;
 
 /**
- * @author rodrigo.pires
+ * @author rafael.andrade
  *
  */
-public class GenericJpaDAO <T extends Persistente, E extends Serializable> implements IGenericJapDAO <T,E> {
+public class GenericJpaDAO<T extends Persistente, E extends Serializable> implements IGenericJapDAO<T, E> {
 
 	protected EntityManagerFactory entityManagerFactory;
-	
+
 	protected EntityManager entityManager;
-	
+
 	private Class<T> persistenteClass;
-	
+
 	public GenericJpaDAO(Class<T> persistenteClass) {
 		this.persistenteClass = persistenteClass;
 	}
-	
+
 	@Override
 	public T cadastrar(T entity) throws TipoChaveNaoEncontradaException, DAOException {
 		openConnection();
@@ -72,24 +69,22 @@ public class GenericJpaDAO <T extends Persistente, E extends Serializable> imple
 	@Override
 	public Collection<T> buscarTodos() throws DAOException {
 		openConnection();
-		List<T> list = 
-				entityManager.createQuery(getSelectSql(), this.persistenteClass).getResultList();
+		List<T> list = entityManager.createQuery(getSelectSql(), this.persistenteClass).getResultList();
 		closeConnection();
 		return list;
 	}
-	
+
 	protected void openConnection() {
-		entityManagerFactory = 
-				Persistence.createEntityManagerFactory("ExemploJPA");
+		entityManagerFactory = Persistence.createEntityManagerFactory("ExemploJPA");
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 	}
-	
+
 	protected void closeConnection() {
 		entityManager.close();
 		entityManagerFactory.close();
 	}
-	
+
 	private String getSelectSql() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("SELECT obj FROM ");
@@ -97,6 +92,5 @@ public class GenericJpaDAO <T extends Persistente, E extends Serializable> imple
 		sb.append(" obj");
 		return sb.toString();
 	}
-
 
 }

@@ -6,26 +6,25 @@ package br.com.randrade.services.generic.jpa;
 import java.io.Serializable;
 import java.util.Collection;
 
-import br.com.randrade.dao.Persistente;
 import br.com.randrade.dao.generic.jpa.IGenericJapDAO;
+import br.com.randrade.domain.jpa.Persistente;
 import br.com.randrade.exceptions.DAOException;
 import br.com.randrade.exceptions.MaisDeUmRegistroException;
 import br.com.randrade.exceptions.TableException;
 import br.com.randrade.exceptions.TipoChaveNaoEncontradaException;
 
 /**
- * @author rodrigo.pires
+ * @author rafael.andrade
  *
  */
-public abstract class GenericJpaService<T extends Persistente, E extends Serializable> 
-	implements IGenericJpaService<T, E> {
-	
+public abstract class GenericJpaService<T extends Persistente, E extends Serializable>
+		implements IGenericJpaService<T, E> {
+
 	protected IGenericJapDAO<T, E> dao;
-	
+
 	public GenericJpaService(IGenericJapDAO<T, E> dao) {
 		this.dao = dao;
 	}
-	
 
 	@Override
 	public T cadastrar(T entity) throws TipoChaveNaoEncontradaException, DAOException {
@@ -51,6 +50,5 @@ public abstract class GenericJpaService<T extends Persistente, E extends Seriali
 	public Collection<T> buscarTodos() throws DAOException {
 		return this.dao.buscarTodos();
 	}
-	
 
 }

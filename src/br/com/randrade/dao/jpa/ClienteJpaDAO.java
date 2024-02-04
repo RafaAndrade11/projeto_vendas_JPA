@@ -7,7 +7,7 @@ import br.com.randrade.dao.generic.jpa.GenericJpaDAO;
 import br.com.randrade.domain.jpa.ClienteJpa;
 
 /**
- * @author rodrigo.pires
+ * @author rafael.andrade
  *
  */
 public class ClienteJpaDAO extends GenericJpaDAO<ClienteJpa, Long> implements IClienteJpaDAO {

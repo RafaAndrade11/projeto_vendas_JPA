@@ -16,7 +16,7 @@ import br.com.randrade.exceptions.DAOException;
 import br.com.randrade.exceptions.TipoChaveNaoEncontradaException;
 
 /**
- * @author rodrigo.pires
+ * @author rafael.andrade
  *
  */
 public class VendaJpaDAO extends GenericJpaDAO<VendaJpa, Long> implements IVendaJpaDAO {
@@ -57,26 +57,23 @@ public class VendaJpaDAO extends GenericJpaDAO<VendaJpa, Long> implements IVenda
 		} catch (Exception e) {
 			throw new DAOException("ERRO SALVANDO VENDA ", e);
 		}
-		
+
 	}
 
 	@Override
 	public VendaJpa consultarComCollection(Long id) {
 		openConnection();
-		
+
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<VendaJpa> query = builder.createQuery(VendaJpa.class);
 		Root<VendaJpa> root = query.from(VendaJpa.class);
 		root.fetch("cliente");
 		root.fetch("produtos");
 		query.select(root).where(builder.equal(root.get("id"), id));
-		TypedQuery<VendaJpa> tpQuery = 
-				entityManager.createQuery(query);
-		VendaJpa venda = tpQuery.getSingleResult();   
+		TypedQuery<VendaJpa> tpQuery = entityManager.createQuery(query);
+		VendaJpa venda = tpQuery.getSingleResult();
 		closeConnection();
 		return venda;
 	}
-	
-	
 
 }
