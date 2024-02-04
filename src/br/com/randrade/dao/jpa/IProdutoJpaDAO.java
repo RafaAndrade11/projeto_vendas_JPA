@@ -10,6 +10,6 @@ import br.com.randrade.domain.jpa.ProdutoJpa;
  * @author rafael.andrade
  *
  */
-public interface IProdutoJpaDAO extends IGenericJapDAO<ProdutoJpa, Long> {
+public interface IProdutoJpaDAO extends IGenericJapDAO<ProdutoJpa, Long>{
 
 }
